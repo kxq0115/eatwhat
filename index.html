@@ -389,12 +389,19 @@
   .modal .actions .btn { flex: 1; padding: 11px; }
   .btn-plain { background: var(--bg); color: var(--text-2); border: 1px solid var(--border); }
 
-  /* ---------- Responsive ---------- */
+  /* ---------- Responsive（移动端：改为自然文档流，整页滚动） ---------- */
   @media (max-width: 760px) {
+    html, body { height: auto; min-height: 100%; }
     body { padding: 10px; }
-    .main { flex-direction: column; gap: 10px; }
-    .map-wrap { order: 1; flex: none; height: 40vh; }
-    .panel { order: 2; width: 100%; min-width: 0; flex: 1; }
+    .topbar { padding: 2px 2px 10px; }
+    .main { flex-direction: column; gap: 10px; min-height: 0; }
+    .map-wrap { order: 1; flex: none; height: 38vh; min-height: 240px; }
+    .panel { order: 2; width: 100%; min-width: 0; flex: none; }
+    /* 列表不再内部滚动，跟随整页滚动 */
+    #list { flex: none; overflow: visible; }
+    /* 防止 iOS 聚焦输入框时自动放大 */
+    .input-row input { font-size: 16px; }
+    .seg-btn { height: 36px; }
   }
 </style>
 </head>
