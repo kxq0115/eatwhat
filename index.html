@@ -1059,7 +1059,12 @@
 
   $('btnLucky').onclick = function () {
     if (!filteredPois.length) return;
-    focusPoi(filteredPois[Math.floor(Math.random() * filteredPois.length)], true);
+    // 不平移地图、不滚动列表：地图保持以定位点为中心，仅弹出信息窗口
+    focusPoi(filteredPois[Math.floor(Math.random() * filteredPois.length)], false);
+    // 手机端地图在页面顶部：随机后滚回顶部让用户看到地图上的结果
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   /* ---------------- 启动 ---------------- */
